@@ -1,0 +1,177 @@
+/* normalize */
+@import url('https://necolas.github.io/normalize.css/latest/normalize.css');
+/* Noto Sans */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+:root {
+    --button-bgc-color: rgb(25, 146, 211);
+    --button-text-color: rgb(255, 255, 255);
+    --main-color: rgb(0, 0, 0);
+    --main-bgc-color: rgb(226, 232, 240);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    list-style: none;
+}
+
+ul,
+h1,
+h2,
+h3,
+h4,
+button,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    min-width: 125px;
+    border-radius: 20px;
+    padding: 10px 30px;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 0 20px;
+    flex: 1 1 auto;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    
+}
+
+header nav button,
+form button {
+    background-color: var(--button-bgc-color);
+    color: var(--button-text-color);
+}
+
+main {
+    background-color: var(--main-bgc-color);
+    padding: 50px 20px;
+    flex: 7 1 auto;
+}
+
+
+main .library .book {
+    display: flex;
+    border: 2px solid black;
+    padding: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+main .library .book:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+main .library .book div {
+    display: flex;
+    align-items: center;
+}
+
+main .library .book div:first-child {
+    flex-wrap: wrap;
+    gap: 15px;
+    flex: 2 1 auto;
+}
+
+main .library .book div:last-child {
+    flex: 0 1 auto;
+    gap: 20px;
+}
+
+main .library .book div:first-child .author {
+    margin-right: auto;
+}
+
+main .library .book div:first-child .author::before {
+    content: '— by';
+    margin-right: 10px;
+}
+
+main .library .book div button {
+    background-color: black;
+    color: var(--button-text-color);
+}
+
+.wrap.active {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.wrap.active form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+form fieldset {
+    background-color: #fff;
+    border: 5px solid #000;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+form legend {
+    font-size: 1.5rem;
+    padding: 0 20px;
+}
+
+
+form li:not(:last-child) {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+form li:nth-child(4) {
+    flex-wrap: wrap;
+}
+
+form input[type='text'],
+form input[type='number'] {
+    border-radius: 50px;
+    border: none;
+    height: 2rem;
+    padding: 0 10px;
+    outline: none;
+    background-color: var(--main-bgc-color);
+}
+
+form label.isRead {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+form label.isRead:first-child {
+    margin-right: 10px;
+}
+
+form button {
+    display: block;
+    margin: 0 auto;
+}
