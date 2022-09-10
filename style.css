@@ -71,7 +71,7 @@ main {
 
 main .library .book {
     display: flex;
-    border: 2px solid black;
+    border: 2px solid var(--main-color);
     padding: 20px;
     gap: 20px;
     flex-wrap: wrap;
@@ -130,8 +130,8 @@ main .library .book div button {
 
 
 form fieldset {
-    background-color: #fff;
-    border: 5px solid #000;
+    background-color: var(--button-text-color);
+    border: 10px solid var(--main-color);
     border-radius: 20px;
     padding: 40px;
 }
