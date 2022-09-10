@@ -183,3 +183,39 @@ form button[type="submit"] {
     display: block;
     margin: 0 auto;
 }
+
+form .closeButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    border-radius: 20px;
+    border: 5px solid var(--main-color);
+}
+
+form .closeButton::before,
+form .closeButton::after {
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 2px;
+    top: 50%;
+    right: 50%;
+    background-color: var(--main-color);
+    opacity: .5;
+}
+
+form .closeButton::before {
+    transform: translate(50%, -50%) rotate(45deg);
+}
+
+form .closeButton::after {
+    transform: translate(50%, -50%) rotate(-45deg);
+}
+
+form .closeButton:hover::before,
+form .closeButton:hover::after {
+    opacity: 1;
+}
