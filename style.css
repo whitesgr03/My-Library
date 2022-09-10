@@ -34,14 +34,20 @@ button {
 }
 
 .container {
-    height: 100vh;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    height: auto;
 }
 
 header {
     padding: 0 20px;
-    flex: 0 0 15%;
+    flex: 0 1 auto;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--button-text-color);
 }
 
 header nav {
@@ -65,7 +71,7 @@ main .library .book div button {
 main {
     background-color: var(--main-bgc-color);
     padding: 50px 20px;
-    flex: auto;
+    flex: 1 1 auto;
 }
 
 
@@ -111,17 +117,17 @@ main .library .book div button {
 }
 
 .wrap {
-    position: absolute;
+    visibility: hidden;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    visibility: hidden;
+    background-color: rgba(0, 0, 0, .3);
 }
 
 .wrap.active {
     visibility: visible;
-    background-color: rgba(0, 0, 0, .3);
 }
 
 form {
