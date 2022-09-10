@@ -31,9 +31,6 @@ button {
     border: 0;
     background-color: transparent;
     cursor: pointer;
-    min-width: 125px;
-    border-radius: 20px;
-    padding: 10px 30px;
 }
 
 .container {
@@ -56,9 +53,13 @@ header nav {
 }
 
 header nav button,
-form button {
+form button[type="submit"],
+main .library .book div button {
     background-color: var(--button-bgc-color);
     color: var(--button-text-color);
+    min-width: 125px;
+    border-radius: 20px;
+    padding: 10px 30px;
 }
 
 main {
@@ -106,8 +107,9 @@ main .library .book div:first-child .author::before {
 }
 
 main .library .book div button {
-    background-color: black;
-    color: var(--button-text-color);
+    background-color: var(--main-color);
+}
+
 }
 
 .wrap.active {
