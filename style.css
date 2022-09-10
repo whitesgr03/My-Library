@@ -110,10 +110,13 @@ main .library .book div button {
     background-color: var(--main-color);
 }
 
+.wrap {
+    display: none;
 }
 
 .wrap.active {
     position: absolute;
+    display: block;
     top: 0;
     bottom: 0;
     left: 0;
@@ -128,6 +131,9 @@ main .library .book div button {
     transform: translate(-50%, -50%);
 }
 
+form {
+    position: relative;
+}
 
 form fieldset {
     background-color: var(--button-text-color);
@@ -173,7 +179,7 @@ form label.isRead:first-child {
     margin-right: 10px;
 }
 
-form button {
+form button[type="submit"] {
     display: block;
     margin: 0 auto;
 }
