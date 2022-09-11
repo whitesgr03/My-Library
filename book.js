@@ -1,12 +1,18 @@
 'use strict'
+const myLibrary = [];
 
 const formBgWrap = document.querySelector('.wrap')
 const addBookButton = document.querySelector('.addBookButton')
 const closeButton = document.querySelector('.closeButton')
+const form = document.querySelector('form')
+
 
 formBgWrap.addEventListener('click', showField)
 addBookButton.addEventListener('click', showField)
 closeButton.addEventListener('click', showField)
+
+form.addEventListener('submit', addBookToLibrary)
+
 class Book{
     constructor({ title, author, pages, isRead}) {
         this.title = title;
@@ -87,6 +93,23 @@ function createTemplate(book) {
     parent.appendChild(div)
 
     wrap.appendChild(parent)
+}
+
+function addBookToLibrary(e) { 
+    e.preventDefault();
+
+    const data = [...new FormData(this)]
+    const book = {}
+
+    for (let [name, value] of data) {
+        book[name] = value
+    }
+
+    const newBook = new Book(book)
+
+    createTemplate(newBook);
+
+    myLibrary.push(newBook);
 }
 }
 
