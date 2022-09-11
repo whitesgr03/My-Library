@@ -8,6 +8,7 @@
     --button-text-color: rgb(255, 255, 255);
     --main-color: rgb(0, 0, 0);
     --main-bgc-color: rgb(226, 232, 240);
+    --main-opacity-color: rgba(128, 128, 128, .2);
 }
 
 * {
@@ -114,6 +115,10 @@ main .library .book div:first-child .author::before {
 
 main .library .book div button {
     background-color: var(--main-color);
+}
+
+main .library .book div button.finished {
+    background-color: var(--button-bgc-color);
 }
 
 .wrap {
