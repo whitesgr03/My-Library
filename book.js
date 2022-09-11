@@ -120,9 +120,25 @@ function activeButton(e) {
         return
     }
     
-}
+    if (e.target.classList.contains('isRead')) {
+        changeReadStatus(e.target, e.target.nextSibling.dataset.id);
+        return
+    }
 }
 
+function changeReadStatus(el, id) {
+    const status = el.classList.contains('finished')
+
+    if (status) {
+        el.textContent = 'Not read'
+    } else {
+        el.textContent = 'Read'
+    }
+
+    el.classList.toggle('finished');
+
+    const book = myLibrary.find(item => item.id === +id)
+    book.changeStatus();
 }
 
 function deleteBookToLibrary(id) {
