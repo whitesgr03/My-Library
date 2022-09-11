@@ -4,12 +4,14 @@ const myLibrary = [];
 const formBgWrap = document.querySelector('.wrap')
 const addBookButton = document.querySelector('.addBookButton')
 const closeButton = document.querySelector('.closeButton')
+const library =  document.querySelector('.library')
 const form = document.querySelector('form')
 
 
 formBgWrap.addEventListener('click', showField)
 addBookButton.addEventListener('click', showField)
 closeButton.addEventListener('click', showField)
+library.addEventListener('click', activeButton)
 
 form.addEventListener('submit', addBookToLibrary)
 
@@ -111,5 +113,22 @@ function addBookToLibrary(e) {
 
     myLibrary.push(newBook);
 }
+
+function activeButton(e) {
+    if (e.target.className === 'removeBook') {
+        deleteBookToLibrary(e.target.dataset.id);
+        return
+    }
+    
+}
 }
 
+}
+
+function deleteBookToLibrary(id) {
+    const parent = document.querySelector(`.book[data-id="${id}"]`)
+    parent.remove();
+
+    const index = myLibrary.findIndex(item => item.id === +id)
+    myLibrary.splice(index, 1)
+}
