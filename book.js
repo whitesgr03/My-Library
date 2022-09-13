@@ -110,7 +110,7 @@ function addBookToLibrary(e) {
     const newBook = new Book(book)
 
     createTemplate(newBook);
-
+    this.reset();
     myLibrary.push(newBook);
 }
 
