@@ -1,19 +1,20 @@
 'use strict'
+
 const myLibrary = [];
 
+// caches Dom
 const formBgWrap = document.querySelector('.wrap')
 const addBookButton = document.querySelector('.addBookButton')
 const closeButton = document.querySelector('.closeButton')
-const library =  document.querySelector('.library')
 const form = document.querySelector('form')
+const library =  document.querySelector('.library')
 
-
+// event 
 formBgWrap.addEventListener('click', showField)
 addBookButton.addEventListener('click', showField)
 closeButton.addEventListener('click', showField)
-library.addEventListener('click', activeButton)
-
 form.addEventListener('submit', addBookToLibrary)
+library.addEventListener('click', activeButton)
 
 class Book{
     constructor({ title, author, pages, isRead}) {
@@ -42,22 +43,62 @@ function showField(e) {
     }
 }
 
-function createElement(element, className, text, id) {
-    let el = document.createElement(element);
-    if (className) {
-        el.classList.add(...className);
+function activeButton(e) {
+    if (e.target.className === 'removeBook') {
+        deleteBookToLibrary(e.target.dataset.id);
+        return
     }
-    if (text) {
-        el.textContent = text;
+    
+    if (e.target.classList.contains('isRead')) {
+        changeReadStatus(e.target, e.target.nextSibling.dataset.id);
+        return
     }
-    if (id) {
-        el.dataset.id = id;
+}
+
+function changeReadStatus(el, id) {
+    const status = el.classList.contains('finished')
+
+    if (status) {
+        el.textContent = 'Not read'
+    } else {
+        el.textContent = 'Read'
     }
-    return el
+
+    el.classList.toggle('finished');
+
+    const book = myLibrary.find(item => item.id === +id)
+    book.changeStatus();
+}
+
+function deleteBookToLibrary(id) {
+    const parent = document.querySelector(`.book[data-id="${id}"]`)
+    parent.remove();
+
+    const index = myLibrary.findIndex(item => item.id === +id)
+    myLibrary.splice(index, 1)
+}
+
+function addBookToLibrary(e) { 
+    e.preventDefault();
+
+    const data = [...new FormData(this)]
+    const book = {}
+    
+    for (let [key, value] of data) {
+        book[key] = value
+    }
+
+    const newBook = new Book(book)
+
+    createTemplate(newBook);
+    this.reset();
+    myLibrary.push(newBook);
+
+    console.log(data)
+    console.log(myLibrary)
 }
 
 function createTemplate(book) {
-    const wrap = document.querySelector('.library');
     const props = [];
 
     for (let key in book) {
@@ -94,57 +135,19 @@ function createTemplate(book) {
 
     parent.appendChild(div)
 
-    wrap.appendChild(parent)
+    library.appendChild(parent)
 }
 
-function addBookToLibrary(e) { 
-    e.preventDefault();
-
-    const data = [...new FormData(this)]
-    const book = {}
-
-    for (let [name, value] of data) {
-        book[name] = value
+function createElement(element, className, text, id) {
+    let el = document.createElement(element);
+    if (className) {
+        el.classList.add(...className);
     }
-
-    const newBook = new Book(book)
-
-    createTemplate(newBook);
-    this.reset();
-    myLibrary.push(newBook);
-}
-
-function activeButton(e) {
-    if (e.target.className === 'removeBook') {
-        deleteBookToLibrary(e.target.dataset.id);
-        return
+    if (text) {
+        el.textContent = text;
     }
-    
-    if (e.target.classList.contains('isRead')) {
-        changeReadStatus(e.target, e.target.nextSibling.dataset.id);
-        return
+    if (id) {
+        el.dataset.id = id;
     }
-}
-
-function changeReadStatus(el, id) {
-    const status = el.classList.contains('finished')
-
-    if (status) {
-        el.textContent = 'Not read'
-    } else {
-        el.textContent = 'Read'
-    }
-
-    el.classList.toggle('finished');
-
-    const book = myLibrary.find(item => item.id === +id)
-    book.changeStatus();
-}
-
-function deleteBookToLibrary(id) {
-    const parent = document.querySelector(`.book[data-id="${id}"]`)
-    parent.remove();
-
-    const index = myLibrary.findIndex(item => item.id === +id)
-    myLibrary.splice(index, 1)
+    return el
 }
