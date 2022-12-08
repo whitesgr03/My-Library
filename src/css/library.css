@@ -1,0 +1,52 @@
+.library .book div button {
+    background-color: var(--button-bgc-color);
+    color: var(--button-text-color);
+    min-width: 125px;
+    border-radius: 20px;
+    padding: 10px 30px;
+}
+
+.library .book {
+    display: flex;
+    border: 2px solid var(--main-color);
+    padding: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.library .book:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.library .book div {
+    display: flex;
+    align-items: center;
+}
+
+.library .book div:first-child {
+    flex-wrap: wrap;
+    gap: 15px;
+    flex: 2 1 auto;
+}
+
+.library .book div:last-child {
+    flex: 0 1 auto;
+    gap: 20px;
+}
+
+.library .book div:first-child .author {
+    margin-right: auto;
+}
+
+.library .book div:first-child .author::before {
+    content: "— by";
+    margin-right: 10px;
+}
+
+.library .book div button {
+    background-color: var(--main-color);
+}
+
+.library .book div button.finished {
+    background-color: var(--button-bgc-color);
+}
