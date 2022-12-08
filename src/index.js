@@ -5,54 +5,54 @@ import './css/index.css'
 const myLibrary = localStorage.getItem(library) || [];
 
 // caches Dom
-const formBgWrap = document.querySelector(".wrap");
-const addBookButton = document.querySelector(".addBookButton");
-const closeButton = document.querySelector(".closeButton");
-const form = document.querySelector("form");
+const addBookBtn = document.querySelector(".addBtn");
 const library = document.querySelector(".library");
 
 // event
-formBgWrap.addEventListener("click", showField);
-addBookButton.addEventListener("click", showField);
-closeButton.addEventListener("click", showField);
-form.addEventListener("submit", addBookToLibrary);
 library.addEventListener("click", activeButton);
+addBookBtn.addEventListener("click", showField);
 
-class Book {
-    constructor({ title, author, pages, isRead }) {
-        this.book = {
-            title,
-            author,
-            pages,
-            isRead,
-        };
-        if (myLibrary.length > 0) {
-            this.book.id = myLibrary.at(-1).id + 1;
-        } else {
-            this.book.id = 1;
-        }
-    }
-    data() {
-        return this.book;
-    }
-    changeStatus() {
-        this.isRead = !this.isRead;
-    }
-    delete() {
-        const parent = document.querySelector(`.book[data-id="${this.book.id}"]`);
-        parent.remove();
+// formBgWrap.addEventListener("click", showField);
+// closeButton.addEventListener("click", showField);
+// form.addEventListener("submit", addBookToLibrary);
 
-        const index = myLibrary.findIndex((item) => item.id === this.book.id);
-        myLibrary.splice(index, 1);
-        // reload
-    }
-}
 
-function showField(e) {
-    if (e.target === this) {
-        formBgWrap.classList.toggle("active");
-    }
-}
+
+// class Book {
+//     constructor({ title, author, pages, isRead }) {
+//         this.book = {
+//             title,
+//             author,
+//             pages,
+//             isRead,
+//         };
+//         if (myLibrary.length > 0) {
+//             this.book.id = myLibrary.at(-1).id + 1;
+//         } else {
+//             this.book.id = 1;
+//         }
+//     }
+//     data() {
+//         return this.book;
+//     }
+//     changeStatus() {
+//         this.isRead = !this.isRead;
+//     }
+//     delete() {
+//         const parent = document.querySelector(`.book[data-id="${this.book.id}"]`);
+//         parent.remove();
+
+//         const index = myLibrary.findIndex((item) => item.id === this.book.id);
+//         myLibrary.splice(index, 1);
+//         // reload
+//     }
+// }
+
+// function showField(e) {
+//     if (e.target === this) {
+//         formBgWrap.classList.toggle("active");
+//     }
+// }
 
 function activeButton(e) {
     if (e.target.className === "removeBook") {
@@ -101,24 +101,24 @@ function changeReadStatus(el, id) {
 //     myLibrary.splice(index, 1)
 // }
 
-function addBookToLibrary(e) {
-    e.preventDefault();
+// function addBookToLibrary(e) {
+//     e.preventDefault();
 
-    const data = [...new FormData(this)];
-    const book = {};
+//     const data = [...new FormData(this)];
+//     const book = {};
 
-    for (let [key, value] of data) {
-        book[key] = value;
-    }
+//     for (let [key, value] of data) {
+//         book[key] = value;
+//     }
 
-    let newBook = new Book(book);
+//     let newBook = new Book(book);
 
-    console.log(newBook);
+//     console.log(newBook);
 
-    // createTemplate(newBook);
-    // this.reset();
-    // myLibrary.push(newBook);
-}
+//     // createTemplate(newBook);
+//     // this.reset();
+//     // myLibrary.push(newBook);
+// }
 
 // function createTemplate(book) {
 //     const props = [];
