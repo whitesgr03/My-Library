@@ -4,6 +4,7 @@ import { handleForm } from "../components/handleForm";
 
 const header = (() => {
     const overlay = document.querySelector(".overlay");
+    overlay.addEventListener("pointerdown", closeBookFormByPointer);
 
     const createBookForm = (book) => {
         const template = `
@@ -113,11 +114,21 @@ const header = (() => {
         overlay.classList.add("show");
     };
 
+    function closeBookFormByPointer(e) {
+        const closeBtn = overlay.querySelector(".closeBtn");
+        if (e.target === overlay || e.target === closeBtn) {
+            closeBookForm();
+        }
+    }
+
+    function closeBookForm() {
+        overlay.firstElementChild.remove();
+        overlay.classList.remove("show");
+    }
+
     return {
         createBookForm,
     };
 })();
 
 export { header };
-
-
