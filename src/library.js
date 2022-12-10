@@ -5,11 +5,14 @@ import { header } from "./layout/header";
 import { handleBook } from "./components/handleBook";
 
 const createLibrary = () => {
-
-    let books = handleBook.getBooks() || [];
-
     // caches Dom
     const addBookBtn = document.querySelector(".addBtn");
+
+    // event
+    addBookBtn.addEventListener("pointerdown", () => {
+        header.createBookForm();
+    });
+
     const init = () => {
         // event
         addBookBtn.addEventListener("pointerdown", showAddBookForm);
