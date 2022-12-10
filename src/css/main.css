@@ -4,11 +4,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
 
 :root {
+    --main-color-light: rgb(255, 255, 255);
+    --main-color-dark: rgb(0, 0, 0);
+    --library-color: rgb(226, 232, 240);
     --button-bgc-color: rgb(25, 146, 211);
-    --button-text-color: rgb(255, 255, 255);
-    --main-color: rgb(0, 0, 0);
-    --main-bgc-color: rgb(226, 232, 240);
-    --main-opacity-color: rgba(128, 128, 128, 0.2);
+    --overlay-bgc-color:  rgba(0, 0, 0, 0.3);
 }
 
 * {
