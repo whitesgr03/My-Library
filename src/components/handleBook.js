@@ -9,7 +9,7 @@ const handleBook = (() => {
         return JSON.parse(books);
     };
 
-    const createBook = function (data) {
+    const createBook = (data) => {
         try {
             const book = data;
             const books = getBooks();
@@ -23,6 +23,12 @@ const handleBook = (() => {
             books.push(book);
 
             localStorage.setItem("books", JSON.stringify(books));
+
+            container.createItem(book);
+        } catch (error) {
+            console.log(error);
+        }
+    };
         } catch (error) {
             console.log(error);
         }
