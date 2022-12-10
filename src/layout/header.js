@@ -5,7 +5,7 @@ import { handleForm } from "../components/handleForm";
 const header = (() => {
     const overlay = document.querySelector(".overlay");
 
-    const createBookForm = () => {
+    const createBookForm = (book) => {
         const template = `
             <fieldset>
                 <button type="button" class="closeBtn"></button>
@@ -18,8 +18,8 @@ const header = (() => {
                             id="bookTitle"
                             name="title"
                             title="The title must be alphanumeric."
-                            maxlength="20"
-                            pattern="^[A-Za-z1-9]{1,20}$"
+                            maxlength="100"
+                            pattern="^[A-Za-z1-9]{1,100}$"
                             required
                         />
                     </li>
@@ -30,7 +30,7 @@ const header = (() => {
                             id="bookAuthor"
                             name="author"
                             title="The author must be alphanumeric."
-                            maxlength="15"
+                            maxlength="20"
                             pattern="^[A-Za-z1-9]{1,20}$"
                             required
                         />
@@ -42,30 +42,30 @@ const header = (() => {
                             id="bookPages"
                             name="pages"
                             title="The author must be alphanumeric."
-                            max="999"
-                            maxlength="3"
+                            max="9999"
+                            maxlength="4"
                             required
                         />
                     </li>
                     <li>
-                        <p>Have you read it?</p>
+                        <p>Have you finished it?</p>
                         <div>
-                            <label class="read" for="read">
+                            <label class="finish" for="finished">
                                 Yes
                                 <input
                                     type="radio"
-                                    id="read"
-                                    name="isRead"
+                                    id="finished"
+                                    name="isFinished"
                                     value="1"
                                     required
                                 />
                             </label>
-                            <label class="read" for="unread">
+                            <label class="finish" for="unfinished">
                                 Not yet
                                 <input
                                     type="radio"
-                                    id="unread"
-                                    name="isRead"
+                                    id="unfinished"
+                                    name="isFinished"
                                     value="0"
                                     required
                                     checked
@@ -76,19 +76,41 @@ const header = (() => {
                 </ul>
                 <button type="submit">Add Book</button>
             </fieldset>`;
+
         const form = document.createElement("form");
         form.innerHTML = template;
         form.setAttribute("novalidate", true);
 
+        if (book) {
+            form.dataset.bookId = book.id;
+            form.elements.title.value = book.title;
+            form.elements.author.value = book.author;
+            form.elements.pages.value = book.pages;
+
+            for (let field of form.elements.isFinished) {
+                if (field.value === book.isFinished) {
+                    field.checked = true;
+                }
+            }
+        }
+
         overlay.append(form);
 
-        const inputs = Array.from(form.querySelectorAll("input:not([type='radio'])"));
+        const inputs = Array.from(
+            form.querySelectorAll("input:not([type='radio'])")
+        );
 
         for (let field of inputs) {
             field.addEventListener("focusout", handleForm.validField);
         }
-        form.addEventListener("submit", handleForm.submitData);
-        overlay.addEventListener("pointerdown", handleForm.closeForm);
+        form.addEventListener("submit", function (e) {
+            const result = handleForm.submitData.call(form, e);
+            if (result) {
+                closeBookForm();
+            }
+        });
+
+        overlay.classList.add("show");
     };
 
     return {
