@@ -15,15 +15,12 @@ const createLibrary = () => {
     });
 
     const init = () => {
-        // event
-        addBookBtn.addEventListener("pointerdown", showAddBookForm);
-    };
+        const books = handleBook.getBooks();
 
-    function showAddBookForm() {
-        header.createBookForm();
-        const overlay = document.querySelector(".overlay");
-        overlay.classList.add("show");
-    }
+        for (let item of books) {
+            container.createItem(item);
+        }
+    };
 
     return {
         init,
