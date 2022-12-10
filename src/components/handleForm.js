@@ -22,22 +22,36 @@ const handleForm = (() => {
         }
 
         const patterns = {
-            text: "^[A-Za-z0-9]{1,15}$",
-            number: "^[0-9]{1,3}$",
+            title: "^[A-Za-z0-9]{1,100}$",
+            author: "^[A-Za-z0-9]{1,20}$",
+            number: "^[0-9]{1,4}$",
         };
 
-        const regex = new RegExp(patterns[this.type], "g");
+        let regex = new RegExp(patterns[this.type], "g");
+
+        if (type === "text") {
+            regex = new RegExp(patterns[this.name], "g");
+        }
+
         const valid = regex.test(this.value);
 
         if (!valid || !inputState.valid) {
             switch (type) {
                 case "text":
-                    this.setCustomValidity(
-                        "The value must be alphanumeric of 20 characters."
-                    );
+                    if (this.name === "title") {
+                        this.setCustomValidity(
+                            "The value must be alphanumeric of 100 characters."
+                        );
+                    }
+
+                    if (this.name === "author") {
+                        this.setCustomValidity(
+                            "The value must be alphanumeric of 20 characters."
+                        );
+                    }
                     break;
                 case "number":
-                    this.setCustomValidity("The number must be less than 999");
+                    this.setCustomValidity("The number must be less than 9999");
                     break;
             }
             this.reportValidity();
