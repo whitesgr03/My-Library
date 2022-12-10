@@ -1,14 +1,10 @@
-
 form {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
 }
 
 form fieldset {
-    background-color: var(--button-text-color);
-    border: 10px solid var(--main-color);
+    background-color: var(--main-color-light);
+    border: 10px solid var(--main-color-dark);
     border-radius: 20px;
     padding: 40px;
 }
@@ -18,7 +14,7 @@ form legend {
     padding: 0 20px;
 }
 
-form li:not(:last-child) {
+form li {
     margin-bottom: 50px;
     display: flex;
     justify-content: space-between;
@@ -37,15 +33,23 @@ form input[type="number"] {
     height: 2rem;
     padding: 0 10px;
     outline: none;
-    background-color: var(--main-bgc-color);
+    background-color: var(--library-color);
 }
 
-form label.isRead {
+form input.error {
+    border: 3px solid red;
+}
+
+form input.success {
+    border: 3px solid green;
+}
+
+form label.finish {
     font-weight: bold;
     font-size: 1.2rem;
 }
 
-form label.isRead:first-child {
+form label.finish:first-child {
     margin-right: 10px;
 }
 
@@ -54,7 +58,7 @@ form button[type="submit"] {
     margin: 0 auto;
 }
 
-form .closeButton {
+form .closeBtn {
     position: absolute;
     right: 0;
     top: 0;
@@ -62,37 +66,37 @@ form .closeButton {
     height: 35px;
     background-color: #fff;
     border-radius: 20px;
-    border: 5px solid var(--main-color);
+    border: 5px solid var(--main-color-dark);
 }
 
-form .closeButton::before,
-form .closeButton::after {
+form .closeBtn::before,
+form .closeBtn::after {
     position: absolute;
     content: "";
     height: 20px;
     width: 2px;
     top: 50%;
     right: 50%;
-    background-color: var(--main-color);
+    background-color: var(--main-color-dark);
     opacity: 0.5;
 }
 
-form .closeButton::before {
+form .closeBtn::before {
     transform: translate(50%, -50%) rotate(45deg);
 }
 
-form .closeButton::after {
+form .closeBtn::after {
     transform: translate(50%, -50%) rotate(-45deg);
 }
 
-form .closeButton:hover::before,
-form .closeButton:hover::after {
+form .closeBtn:hover::before,
+form .closeBtn:hover::after {
     opacity: 1;
 }
 
 form button[type="submit"] {
     background-color: var(--button-bgc-color);
-    color: var(--button-text-color);
+    color: var(--main-color-light);
     min-width: 125px;
     border-radius: 20px;
     padding: 10px 30px;
