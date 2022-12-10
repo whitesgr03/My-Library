@@ -29,6 +29,37 @@ const handleBook = (() => {
             console.log(error);
         }
     };
+
+    const updateBook = (data, id) => {
+        try {
+            const book = data;
+            const books = getBooks();
+            const index = books.findIndex((item) => item.id === id);
+
+            books[index].title = book.title;
+            books[index].author = book.author;
+            books[index].pages = book.pages;
+            books[index].isFinished = book.isFinished;
+
+            localStorage.setItem("books", JSON.stringify(books));
+
+            container.updateItem(books[index]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const deleteBook = (book) => {
+        try {
+            const books = getBooks();
+            const index = books.findIndex((item) => item.id === book.id);
+
+            books.splice(index, 1);
+
+            localStorage.setItem("books", JSON.stringify(books));
+
+            container.deleteItem(book.id)
+
         } catch (error) {
             console.log(error);
         }
@@ -36,6 +67,8 @@ const handleBook = (() => {
 
     return {
         createBook,
+        updateBook,
+        deleteBook,
         getBooks,
     };
 })();
