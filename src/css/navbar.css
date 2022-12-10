@@ -1,0 +1,18 @@
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.navbar .addBtn {
+    background-color: var(--button-bgc-color);
+    color: var(--main-color-light);
+    min-width: 125px;
+    border-radius: 20px;
+    padding: 10px 30px;
+}
+
+    
