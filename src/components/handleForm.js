@@ -80,32 +80,27 @@ const handleForm = (() => {
                 field.setCustomValidity("The field must be correct value");
                 field.reportValidity();
                 field.classList.add("error");
-                return;
+                return false;
             }
 
             if (field.classList.contains("error")) {
                 validField.call(field, e);
-                return;
+                return false;
             }
         }
 
-        handleBook.createBook(formProps);
-    };
-
-    const closeForm = function (e) {
-        const closeBtn = this.querySelector(".closeBtn");
-
-        if (e.target === this || e.target === closeBtn) {
-            this.firstElementChild.remove();
-            this.classList.remove("show");
-            this.removeEventListener("pointerdown", handleForm.closeForm);
+        if (this.dataset.bookId) {
+            handleBook.updateBook(formProps, +this.dataset.bookId);
+        } else {
+            handleBook.createBook(formProps);
         }
+
+        return true
     };
 
     return {
         validField,
         submitData,
-        closeForm,
     };
 })();
 
